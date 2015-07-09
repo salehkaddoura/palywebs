@@ -1,10 +1,11 @@
+var config = require('./config.js');
 var express = require('express');
 var app = express();
 var AWS = require('aws-sdk');
 
 var port = process.env.port || 8080;
 
-AWS.config.update({accessKeyId: 'AKIAIPLMO3URB62ICYEA', secretAccessKey: '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', region: 'us-west-1'});
+AWS.config.update({accessKeyId: process.env.ACCESS_KEY, secretAccessKey: process.env.SECRET_KEY, region: process.env.REGION});
 
 app.get('/', function(req, res) {
 	res.json({ message: 'Hey!' });
@@ -31,7 +32,7 @@ app.get('/images', function(req, res) {
             res.json(imgObj);
         }
     });
-    
+
 });
 
 app.listen(port);

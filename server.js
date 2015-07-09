@@ -1,5 +1,5 @@
 require('newrelic');
-var config = require('./config.js');
+// var config = require('./config.js');
 var express = require('express');
 var app = express();
 var AWS = require('aws-sdk');

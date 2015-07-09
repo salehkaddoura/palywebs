@@ -3,7 +3,7 @@ var express = require('express');
 var app = express();
 var AWS = require('aws-sdk');
 
-var port = process.env.port || 8080;
+var port = process.env.PORT || 8080;
 
 AWS.config.update({accessKeyId: process.env.ACCESS_KEY, secretAccessKey: process.env.SECRET_KEY, region: process.env.REGION});
 

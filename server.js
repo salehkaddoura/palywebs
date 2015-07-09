@@ -1,11 +1,14 @@
+require('newrelic');
 var config = require('./config.js');
 var express = require('express');
 var app = express();
 var AWS = require('aws-sdk');
+var morgan = require('morgan');
 
 var port = process.env.PORT || 8080;
 
 AWS.config.update({accessKeyId: process.env.ACCESS_KEY, secretAccessKey: process.env.SECRET_KEY, region: process.env.REGION});
+app.use(morgan('combined'));
 
 app.get('/', function(req, res) {
 	res.json({ message: 'Hey!' });

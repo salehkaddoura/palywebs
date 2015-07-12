@@ -4,10 +4,12 @@ var express = require('express');
 var app = express();
 var AWS = require('aws-sdk');
 var morgan = require('morgan');
+var cors = require('cors');
 
 var port = process.env.PORT || 8080;
 
 AWS.config.update({accessKeyId: process.env.ACCESS_KEY, secretAccessKey: process.env.SECRET_KEY, region: process.env.REGION});
+app.use(cors());
 app.use(morgan('combined'));
 
 app.get('/', function(req, res) {
@@ -23,7 +25,7 @@ app.get('/images', function(req, res) {
 
     s3.listObjects(params, function(err, data) {
         if (err) {
-            console.log(err);
+            res.json(err);
         } else {
 
             data.Contents.map(function(image, index) {
